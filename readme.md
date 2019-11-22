@@ -15,3 +15,5 @@
 
 # 269: Writing the Language Context
 
+# 270: Consuming 2 Contexts: Enter the Higher Order Component
+
