@@ -14,13 +14,38 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import withStyles from "@material-ui/core/styles/withStyles";
 import styles from "./styles/FormStyles";
+import { LanguageContext } from "./contexts/LanguageContext"
+
+const words = {
+   english: {
+     signIn: "Sign In",
+     email: "Email Address",
+     password: "Password",
+     remember: "Remember Me"
+   },
+   french: {
+     signIn: "Se Connecter",
+     email: "Adresse Électronique",
+     password: "Mot de Passe",
+     remember: "Souviens-toi De Moi"
+   },
+   spanish: {
+     signIn: "Registrarse",
+     email: "Correo Electrónico",
+     password: "Contraseña",
+     remember: "Recuérdame"
+   }
+ };
 
 class Form extends Component {
 
+   static contextType = LanguageContext
 
    render() {
-
+      
+      const { language, changeLanguage } = this.context
       const { classes } = this.props
+      const { email, signIn, password, remember } = words[language]
 
       return (
          <main className={classes.main}>
@@ -31,9 +56,9 @@ class Form extends Component {
                <Typography
                   variant="h5"
                >
-                  Sign In
+                  {signIn}
                </Typography>
-               <Select value="english">
+               <Select value={language} onChange={changeLanguage}>
                   <MenuItem value="english">English</MenuItem>
                   <MenuItem value="french">French</MenuItem>
                   <MenuItem value="spanish">Spanish</MenuItem>
@@ -41,23 +66,23 @@ class Form extends Component {
                <form className={classes.form}>
                   <FormControl margin="normal" required fullWidth >
                      <InputLabel htmlFor="email" >
-                        Email
+                        {email}
                      </InputLabel>
                      <Input id="email" name="email" autoFocus />
                   </FormControl>
                   <FormControl margin="normal" required fullWidth >
                      <InputLabel htmlFor="email" >
-                        Password
+                        {password}
                      </InputLabel>
                      <Input id="email" name="password" autoFocus />
                   </FormControl>
                   <FormControlLabel
                      control={<Checkbox color="primary" />}
-                     label="Remember Me"
+                     label={remember}
                   />
                   <Button variant="contained" type="submit" fullWidth color="primary"
                      className={classes.submit}
-                     >Sign In</Button>
+                     >{signIn}</Button>
                </form>
             </Paper>
          </main>
