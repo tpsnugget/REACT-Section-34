@@ -7,3 +7,7 @@
 
 # 265: Adding a Responsive Form to our Context App
 
+# 266: Intro to Context and Providers
+
+# 267: Consuming A Context
+
